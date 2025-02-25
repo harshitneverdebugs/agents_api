@@ -256,8 +256,8 @@ def generate_bazi_report():
     crew = create_agents(readings, current_date)
     result = crew.kickoff(inputs={"readings": readings, "current_date": current_date})
     
-    # Return the generated report
-    return jsonify(result)
+    raw_text = result.raw if hasattr(result, 'raw') else None
+    return jsonify({"raw": raw_text})
 
 
 if __name__ == '__main__':
